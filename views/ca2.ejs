@@ -1,0 +1,28 @@
+<%- include("_header") -%>
+
+<a class="btn btn-sm btn-warning" href="/ca">Afficher tout les ca</a>
+
+<div class="table-responsive-sm">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Montant</th>
+        <th>Vendeur</th>
+        <th>Region</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const book of model) { %>
+        <tr>
+          <td><%= book.date %></td>
+          <td><%= book.montant %></td>
+          <td><%= book.vendeurId %></td>
+          <td><%= book.regionId %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("_footer") -%>

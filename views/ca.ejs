@@ -1,0 +1,63 @@
+<%- include("_header") -%>
+
+<div>
+    <label for="region-select">Region:</label>
+    
+    <select name="region" id="region-select" onchange="updateHrefRegion(this)">
+      <% for (const region of regions) { %>
+            <option value="<%= region.id %>"><%= region.libelle %></option>
+      <% } %>
+    </select>
+    <a id="filtreRegion" class="btn btn-sm btn-warning" href="">Valider</a>
+    
+    <script>
+      function updateHrefRegion(selectElement) {
+        const selectedValue = selectElement.value;
+        const filtreRegion = document.getElementById('filtreRegion');
+        filtreRegion.href = '/ca1/' + selectedValue;
+      }
+    </script>
+    
+
+    <select name="vendeur" id="vendeur-select" onchange="updateHrefVendeur(this)">
+        <% for (const vendeur of vendeurs) { %>
+            <option value="<%= vendeur.id %>"><%= vendeur.nom %> <%= vendeur.prenom %></option>
+        <% } %>
+    </select> 
+
+    <a id="filtreVendeur" class="btn btn-sm btn-warning" href="/ca2/<%= vendeurs[1].id %>">Valider</a>
+
+    <script>
+      function updateHrefVendeur(selectElement) {
+        const selectedValue = selectElement.value;
+        const filtreVendeur = document.getElementById('filtreVendeur');
+        filtreVendeur.href = '/ca2/' + selectedValue;
+      }
+    </script>
+    
+</div>
+
+<div class="table-responsive-sm">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Montant</th>
+        <th>Vendeur</th>
+        <th>Region</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const book of model) { %>
+        <tr>
+          <td><%= book.date %></td>
+          <td><%= book.montant %></td>
+          <td><%= book.vendeurId %></td>
+          <td><%= book.regionId %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("_footer") -%>
